@@ -1,4 +1,4 @@
-package Pilhas;
+package ArrayPilhas;
 
 public class StackInt {
 

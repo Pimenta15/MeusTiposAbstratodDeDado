@@ -1,4 +1,4 @@
-package Listas.Listainteira;
+package Listas.Listainteira.inteira;
 
 public class LSEint {
     private LSEnode primeiro;
