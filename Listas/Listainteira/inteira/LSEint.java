@@ -5,7 +5,9 @@ public class LSEint {
 
 
     public void inserirNoInicio(Integer num){
+
         LSEnode novo;
+        
         novo = new LSEnode(num);
        
         if (this.primeiro == null) {
@@ -15,5 +17,28 @@ public class LSEint {
             novo.setProx(this.primeiro);
             this.primeiro = novo;
         }
+    }
+
+    public void removerPrimeiro(){
+
+        this.primeiro = primeiro.getProx();
+
+    }
+
+    public int procurar(Integer buscado){
+       
+        int contador = 1;
+        LSEnode atual = primeiro;
+
+        while (atual != null) {
+            if (atual.getInfo().equals(buscado)) {
+                return contador;
+            }
+            atual = atual.getProx();
+            contador++;
+        }
+
+    return -1;
+
     }
 }
