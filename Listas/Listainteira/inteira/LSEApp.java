@@ -8,30 +8,40 @@ import java.util.Scanner;
 public class LSEApp {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner (System.in);
-        LSEint numeros;
-        numeros = new LSEint();
+        try (Scanner in = new Scanner(System.in)) {
+            LSEint numeros;
+            numeros = new LSEint();
 
-        int op, num, qtd;
-        
-        do {
-    
-        exibirOpcoes();op = in.nextInt();
-    
-        switch (op) {
+            int op, num;
 
-        case 1: System.out.print("Informe o valor a ser inserido: ");
-        num = in.nextInt();
-        numeros.inserirNoInicio(num);
-        break;case 2: numeros.exibirTodos();
-        break;
-        case 3: numeros.removerPrimeiro();
-        break;case 0: System.out.println("Bye bye");
-        break;default: System.out.println("Opção inválida!");
-        }    
-        } while (op != 0);
+            do {
+
+                exibirOpcoes();
+                op = in.nextInt();
+
+                switch (op) {
+
+                    case 1:
+                        System.out.print("Informe o valor a ser inserido: ");
+                        num = in.nextInt();
+                        numeros.inserirNoInicio(num);
+                        break;
+                    case 2:
+                        numeros.exibirTodos();
+                        break;
+                    case 3:
+                        numeros.removerPrimeiro();
+                        break;
+                    case 0:
+                        System.out.println("Bye bye");
+                        break;
+                    default:
+                        System.out.println("Opção inválida!");
+                }
+            } while (op != 0);
+        }
     }
-    
+
     public static void exibirOpcoes() {
         System.out.println("Opções");
         System.out.println("1 -Inserir novo valor no início da lista");
