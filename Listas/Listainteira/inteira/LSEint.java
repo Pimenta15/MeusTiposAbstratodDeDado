@@ -10,9 +10,9 @@ public class LSEint {
         
         novo = new LSEnode(num);
        if(isEmpty()){
-           this.primeiro = num;
+           this.primeiro = novo;
        }else{
-           retorno = procurar(valor);
+           retorno = procurar(num);
            
         if (retorno == null) {
             this.primeiro = novo;
@@ -54,7 +54,7 @@ public class LSEint {
     return -1;
 
     }
-    public LSENode procurar(int valor){
+    public LSEnode procurar(int valor){
        
         LSEnode atual = this.primeiro;
         
