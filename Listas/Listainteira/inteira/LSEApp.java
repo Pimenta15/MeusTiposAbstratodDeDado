@@ -32,6 +32,11 @@ public class LSEApp {
                     case 3:
                         numeros.removerPrimeiro();
                         break;
+                    case 4:
+                        System.out.print("Informe o valor a ser inserido: ");
+                        num = in.nextInt();
+                        numeros.inserirNoFinal(num);
+                        break;
                     case 0:
                         System.out.println("Bye bye");
                         break;
@@ -47,6 +52,7 @@ public class LSEApp {
         System.out.println("1 -Inserir novo valor no início da lista");
         System.out.println("2 -Exibir valores na lista");
         System.out.println("3 -Remover o nó que se encontra no início da lista");
+        System.out.println("4 -Inserir no Final ");
         System.out.println("0 -Encerrar programa");
         System.out.print("Digite a opção desejada: ");
     }
