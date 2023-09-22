@@ -23,12 +23,26 @@ public class LSEint {
         }
         }
     }
+
     public void removerPrimeiro(){
         if(!isEmpty()){
         this.primeiro = primeiro.getProx();
             System.out.println("Remoção efetuada");
         }else{
             System.out.println("Lista Vazia");
+        }
+    }
+
+    public void exibirTodos() { 
+        LSEnode aux;
+        if (this.isEmpty() == true) {
+            System.out.println("Lista vazia!");
+        } else {
+            aux = this.primeiro;
+            while (aux != null) {
+                System.out.println(aux.getInfo());
+                aux = aux.getProx();
+            }   
         }
     }
     
