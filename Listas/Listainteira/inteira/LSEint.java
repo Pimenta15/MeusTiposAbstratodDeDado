@@ -33,7 +33,7 @@ public class LSEint {
 
     public void exibirTodos() {
         LSEnode aux;
-        if (this.isEmpty() == true) {
+        if (this.isEmpty()) {
             System.out.println("Lista vazia!");
         } else {
             aux = this.primeiro;
@@ -85,25 +85,34 @@ public class LSEint {
     }
 
     public void inserirNoFinal(Integer adicionar) {
-        LSEnode novo, 
-        atual = this.primeiro;
-
-        novo = new LSEnode(adicionar);
+        LSEnode novo = new LSEnode(adicionar);
 
         if (isEmpty()) {
             this.primeiro = novo;
         } else {
-            while (atual != null) {
-                if (adicionar == atual.getInfo()) {
+            LSEnode atual = this.primeiro;
+            while (atual.getProx() != null) {
+                if (adicionar.equals(atual.getInfo())) {
                     System.out.println("Valor repetido não adicionado");
-                    break;
-                } else {
-                    if (atual.getProx() == null) {
-                        atual.setProx(novo);
-                    }
+                    return;
                 }
                 atual = atual.getProx();
             }
+            atual.setProx(novo);
         }
+    }
+
+    public void removerNoFinal() {
+
+        LSEnode novo = this.primeiro;
+        
+        while (novo != null) {
+
+            if (novo.getProx() == null) {
+
+                novo = null;
+            }
+        }
+
     }
 }
