@@ -1,0 +1,67 @@
+package Listas.Listainteira.LDEinteira;
+
+import java.util.Scanner;
+
+public class MainLde {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        LDEInteira numeros = new LDEInteira();
+        int op, num;
+
+        do {
+            exibirMenu();
+            op = in.nextInt();
+
+            switch (op) {
+                case 1:
+                    System.out.print("Informe o valor: ");
+                    num = in.nextInt();
+                    numeros.inserirInicio(num);
+                    
+                    break;
+                case 2:
+                    System.out.print("Informe o valor: ");
+                    num = in.nextInt();
+                    numeros.inserirFinal(num);
+                    
+                    break;
+                case 3:
+                    System.out.println("Lista de números:");
+                    numeros.exibir();
+                    break;
+                case 4:
+                    numeros.removerInicio();
+                   
+                    break;
+                case 5:
+                    numeros.removerFinal();
+                    
+                    break;
+                case 6:
+                    System.out.print("Informe o valor a ser removido: ");
+                    num = in.nextInt();
+                    numeros.removerEspecifico(num);
+                    break;
+                case 0:
+                    System.out.println("Fim de programa!");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (op != 0);
+    }
+
+    public static void exibirMenu() {
+        System.out.println("Opções");
+        System.out.println("1 - Inserir no início");
+        System.out.println("2 - Inserir no final");
+        System.out.println("3 - Exibir todos");
+        System.out.println("4 - Remover primeiro");
+        System.out.println("5 - Remover último");
+        System.out.println("6 - Remover um elemento específico");
+        System.out.println("0 - Encerrar o programa");
+        System.out.print("Informe a opção desejada: ");
+    }
+}
+
+
