@@ -1,3 +1,5 @@
+package Listas.Listainteira.inteira;
+
 public class Aluno {
     private String nome;
     private String matricula;

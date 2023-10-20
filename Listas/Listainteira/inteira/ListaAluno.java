@@ -1,3 +1,5 @@
+package Listas.Listainteira.inteira;
+
 public class ListaAluno {
     NodeAluno first;
 

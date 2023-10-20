@@ -1,3 +1,5 @@
+package Listas.Listainteira.inteira;
+
 public class Node {
     private Node next;
     private Integer value;
