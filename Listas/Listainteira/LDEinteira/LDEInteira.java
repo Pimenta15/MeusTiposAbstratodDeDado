@@ -167,5 +167,75 @@ public class LDEInteira {
             System.out.println(" ");
         }
     }
+
+    public int removerCopias(int valor ){
+        int cont = 0;
+        node atual = this.primeiro;
+        while (atual != null) {
+            if (atual.getInfo() == valor) {
+                removerEspecifico(atual.getInfo());
+                cont++;
+                this.qtd--;
+            }
+            atual = atual.getProx();
+        }
+        return cont;
+    }
+
+    public LDEInteira intersecao(LDEInteira outra) {
+        LDEInteira retorno = new LDEInteira(); 
+        
+        node atual = this.primeiro;
+        
+        while (atual != null) {
+            int valueA = atual.getInfo();
+            if (outra.buscar(valueA)!=null) {
+                retorno.inserirFinal(valueA); 
+            }
+            atual = atual.getProx();
+        }
+        
+        return retorno;
+    }
+    
+    public LDEInteira uniao(LDEInteira otherList) {
+        LDEInteira retorno = new LDEInteira(); 
+    
+        node atual1 = this.primeiro;
+        node atual2 = otherList.primeiro;
+    
+        
+        while (atual1 != null) {
+            int valueA = atual1.getInfo();
+            retorno.inserirFinal(valueA);
+            atual1 = atual1.getProx();
+        }
+    
+        
+        while (atual2 != null) {
+            int valueB = atual2.getInfo();
+            retorno.inserirFinal(valueB);
+            atual2 = atual2.getProx();
+        }
+    
+        return retorno;
+    }
+    
+    public LDEInteira diferenca(LDEInteira outra) {
+        LDEInteira diferenca = new LDEInteira(); // Cria uma nova lista para a diferença
+    
+        node currentA = this.primeiro;
+    
+        while (currentA != null) {
+            int valueA = currentA.getInfo();
+            if (outra.buscar(valueA) == null) {
+                diferenca.inserirFinal(valueA); // Adiciona o valor à lista de diferença se não estiver presente em B
+            }
+            currentA = currentA.getProx();
+        }
+    
+        return diferenca;
+    }
+    
 }
 
