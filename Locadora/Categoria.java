@@ -31,6 +31,6 @@ public class Categoria implements Comparable <Categoria>{
 
     @Override
     public String toString() {
-        return "Categoria: " + descricao ;
+        return descricao ;
     }
 }

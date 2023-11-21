@@ -94,4 +94,16 @@ public class ListaFilmes {
 
         System.out.println("Filme não encontrado: " + filme);
     }
+
+    public void exibir(){
+        if (isEmpty()) {
+            System.out.println("Lista Vazia");
+            return;
+        }
+        NodeSecundario atual = this.primeiro;
+        do{
+            System.out.println(atual.getInfo());
+            atual = atual.getProx();
+        }while(atual!= this.primeiro);
+    }
 }

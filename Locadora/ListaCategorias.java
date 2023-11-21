@@ -11,13 +11,14 @@ public class ListaCategorias {
         return this.primeiro == null && qtd == 0 && this.ultimo == null;
     }
 
-    public void inserir(String o) {
-        Categoria novo = new Categoria(o);
+    public void inserir(Filme o) {
+        Categoria novo = new Categoria(o.getGenero());
         NodePrincipal inserir = new NodePrincipal(novo);
     
         if (isEmpty()) {
             this.primeiro = inserir;
             this.ultimo = inserir;
+            this.primeiro.getInfo().getLista().inserir(o);
             qtd++;
             return;
         }
@@ -26,12 +27,15 @@ public class ListaCategorias {
             inserir.setProx(this.primeiro);
             this.primeiro.setAnte(inserir);
             this.primeiro = inserir;
+            this.primeiro.getInfo().getLista().inserir(o);
             qtd++;
             return;
         }
-    
-        if (novo.compareTo(this.ultimo.getInfo()) == 0 || novo.compareTo(this.primeiro.getInfo()) == 0) {
-            System.out.println("Categoria já existente");
+        if(novo.compareTo(this.primeiro.getInfo()) == 0) {
+            this.primeiro.getInfo().getLista().inserir(o);
+        }
+        if (novo.compareTo(this.ultimo.getInfo()) == 0){ 
+            this.ultimo.getInfo().getLista().inserir(o);
             return;
         }
     
@@ -39,6 +43,7 @@ public class ListaCategorias {
             this.ultimo.setProx(inserir);
             inserir.setAnte(this.ultimo);
             this.ultimo = inserir;
+            this.ultimo.getInfo().getLista().inserir(o);
             qtd++;
             return;
         }
@@ -46,13 +51,14 @@ public class ListaCategorias {
         NodePrincipal atual = this.primeiro;
         while (atual.getProx() != this.primeiro) {
             if (novo.compareTo(atual.getInfo()) == 0) {
-                System.out.println("Categoria já existente");
+                 atual.getInfo().getLista().inserir(o);
                 return;
             } else if (novo.compareTo(atual.getInfo()) > 0 && novo.compareTo(atual.getProx().getInfo()) < 0) {
                 inserir.setProx(atual.getProx());
                 atual.getProx().setAnte(inserir);
                 inserir.setAnte(atual);
                 atual.setProx(inserir);
+                atual.getInfo().getLista().inserir(o);
                 qtd++;
                 return;
             }
@@ -129,6 +135,7 @@ public class ListaCategorias {
         NodePrincipal atual = this.primeiro;
         for (int i = 0; i < qtd; i++) {
             System.out.println("Categoria: " + atual.getInfo());
+            atual.getInfo().getLista().exibir();
             atual = atual.getProx();
         }
     }
