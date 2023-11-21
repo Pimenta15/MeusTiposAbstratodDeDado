@@ -66,13 +66,13 @@ public class ListaCategorias {
         }
     }
 
-    public void remover(String o) {
+    public void remover(Filme o) {
         if (isEmpty()) {
             System.out.println("A lista está vazia.");
             return;
         }
     
-        Categoria remover = new Categoria(o);
+        Categoria remover = new Categoria(o.getGenero());
         NodePrincipal atual = this.primeiro;
     
         do {

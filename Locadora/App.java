@@ -7,7 +7,8 @@ public class App {
 
     public static void main(String[] args) {
         int opcao;
-
+        String titulo, genero, classificacao;
+        int ano;
         do {
             exibirMenu();
             System.out.print("Escolha uma opção: ");
@@ -17,20 +18,32 @@ public class App {
             switch (opcao) {
                 case 1:
                     System.out.println("Digite o Titulo do filme:");
-                    String titulo = in.nextLine().toUpperCase();
+                     titulo = in.nextLine().toUpperCase();
                     
                     System.out.println("Digite o Gênero");
-                    String genero = in.nextLine().toUpperCase();
+                     genero = in.nextLine().toUpperCase();
                    
                     System.out.println("Digite a classificação");
-                    String classificacao = in.nextLine().toUpperCase();
-                    
+                     classificacao = in.nextLine().toUpperCase();
+                    in.nextLine();
                     System.out.println("Digite o ano de lançamento do filme");
-                    int ano = in.nextInt();
+                     ano = in.nextInt();
                     cadastrarFilme(titulo, genero, classificacao, ano);
                     break;
                 case 2:
-                    removerFilme();
+                System.out.println("Digite o Titulo do filme:");
+                     titulo = in.nextLine().toUpperCase();
+                    
+                    System.out.println("Digite o Gênero");
+                     genero = in.nextLine().toUpperCase();
+                   
+                    System.out.println("Digite a classificação");
+                     classificacao = in.nextLine().toUpperCase();
+                    
+                    System.out.println("Digite o ano de lançamento do filme");
+                     ano = in.nextInt();
+                    
+                    removerFilme(titulo, genero, classificacao, ano);
                     break;
                 case 3:
                     consultarFilme();
@@ -72,8 +85,9 @@ public class App {
         lista.inserir(adicionar);
     }
 
-    private static void removerFilme() {
-      
+    private static void removerFilme(String titulo, String genero, String classificacao, int ano) {
+        Filme remover = new Filme(titulo, genero, classificacao, ano);
+        lista.remover(remover);
     }
 
     private static void consultarFilme() {
