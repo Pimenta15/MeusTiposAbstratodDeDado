@@ -53,6 +53,6 @@ public class Filme implements Comparable<Filme> {
     
     @Override
     public String toString() {
-        return "Filme:\n" +"\ntitulo: " + titulo +"\ngenero: " + genero +"\nclassificacao: " + classificacao + "\nano: " + ano;
+        return "Filme:" + titulo ;
     }
 }

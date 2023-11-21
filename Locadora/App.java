@@ -1,14 +1,15 @@
 import java.util.Scanner;
 
 public class App {
-
+    
     private static ListaCategorias lista = new ListaCategorias();
     static Scanner in = new Scanner(System.in);
-
+    
+    static String titulo, genero, classificacao;
+    static int ano;
+   
     public static void main(String[] args) {
         int opcao;
-        String titulo, genero, classificacao;
-        int ano;
         do {
             exibirMenu();
             System.out.print("Escolha uma opção: ");
@@ -17,45 +18,28 @@ public class App {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o Titulo do filme:");
-                     titulo = in.nextLine().toUpperCase();
-                    
-                    System.out.println("Digite o Gênero");
-                     genero = in.nextLine().toUpperCase();
-                   
-                    System.out.println("Digite a classificação");
-                     classificacao = in.nextLine().toUpperCase();
-                    in.nextLine();
-                    System.out.println("Digite o ano de lançamento do filme");
-                     ano = in.nextInt();
+                    filme();
                     cadastrarFilme(titulo, genero, classificacao, ano);
                     break;
                 case 2:
-                System.out.println("Digite o Titulo do filme:");
-                     titulo = in.nextLine().toUpperCase();
-                    
-                    System.out.println("Digite o Gênero");
-                     genero = in.nextLine().toUpperCase();
-                   
-                    System.out.println("Digite a classificação");
-                     classificacao = in.nextLine().toUpperCase();
-                    
-                    System.out.println("Digite o ano de lançamento do filme");
-                     ano = in.nextInt();
-                    
+                    filme();
                     removerFilme(titulo, genero, classificacao, ano);
                     break;
                 case 3:
-                    consultarFilme();
+                    filme();
+                    consultarFilme(titulo, genero, classificacao, ano);
                     break;
                 case 4:
-                    editarFilme();
+                    filme();
+                    editarFilme(titulo, genero, classificacao, ano);
                     break;
                 case 5:
                     exibirTodosFilmes();
                     break;
                 case 6:
-                    exibirFilmesPorCategoria();
+                System.out.println("Digite a categoria a ser Listada");
+                String categ = in.nextLine();
+                    exibirFilmesPorCategoria(categ);
                     break;
                 case 0:
                     System.out.println("Saindo da aplicação. Até mais!");
@@ -89,20 +73,67 @@ public class App {
         Filme remover = new Filme(titulo, genero, classificacao, ano);
         lista.remover(remover);
     }
-
-    private static void consultarFilme() {
-      
+    private static void consultarFilme(String titulo, String genero, String classificacao, int ano) {
+        Filme consultar = new Filme(titulo, genero, classificacao, ano);
+        consultar = lista.buscar(genero).getInfo().getLista().buscar(consultar).getInfo();
+        if (consultar != null) {
+           
+            System.out.println("Filme encontrado:");
+            System.out.println("Titulo: " +consultar.getTitulo()); 
+            System.out.println("Categoria: "+ consultar.getGenero());
+            System.out.println("Classificação: " + consultar.getClassificacao());
+            System.out.println("Ano de Lançamento: "+ consultar.getAno());
+        }else{
+            System.out.println("Filme não cadastrado:");
+            
+        }
     }
 
-    private static void editarFilme() {
-       
+    private static void editarFilme(String titulo, String genero, String classificacao, int ano) {
+        Filme editar = new Filme(titulo, genero, classificacao, ano);
+        editar = lista.buscar(genero).getInfo().getLista().buscar(editar).getInfo();
+        if (editar != null) {
+           
+            System.out.println("Filme encontrado:");
+            System.out.println("Titulo: " +editar.getTitulo()); 
+            System.out.println("Categoria: "+ editar.getGenero());
+            System.out.println("Classificação: " + editar.getClassificacao());
+            System.out.println("Ano de Lançamento: "+ editar.getAno());
+            
+            System.out.println("Editar titulo: ");
+            editar.setTitulo(in.nextLine());
+            System.out.println("Editar categoria: ");
+            editar.setGenero(in.nextLine());
+            System.out.println("Editar Classificação: ");
+            editar.setClassificacao(in.nextLine());
+            System.out.println("Editar Ano de Lançamento: ");
+            editar.setAno(in.nextInt());
+        }else{
+            System.out.println("Filme não cadastrado:");
+            
+        }
     }
 
     private static void exibirTodosFilmes() {
        lista.exibirLista();
     }
 
-    private static void exibirFilmesPorCategoria() {
-      
+    private static void exibirFilmesPorCategoria(String categoria) {
+      ListaFilmes listar =lista.buscar(categoria).getInfo().getLista();
+      listar.exibir();
+    }
+
+    public static void filme() {
+        System.out.println("Digite o Titulo do filme:");
+        titulo = in.nextLine().toUpperCase();
+                    
+        System.out.println("Digite o Gênero");
+        genero = in.nextLine().toUpperCase();
+                   
+        System.out.println("Digite a classificação");
+        classificacao = in.nextLine().toUpperCase();
+                   
+        System.out.println("Digite o ano de lançamento do filme");
+        ano = in.nextInt();
     }
 }

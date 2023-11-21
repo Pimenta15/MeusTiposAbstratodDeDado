@@ -106,4 +106,28 @@ public class ListaFilmes {
             atual = atual.getProx();
         }while(atual!= this.primeiro);
     }
+
+    public NodeSecundario buscar(Filme filme) {
+        if (isEmpty()) {
+            System.out.println("A lista está vazia.");
+            return null;
+        }
+    
+        NodeSecundario atual = this.primeiro;
+        do {
+            if (filme.compareTo(atual.getInfo()) == 0) {
+                System.out.println("Filme encontrado:");
+                System.out.println("Titulo: " + atual.getInfo().getTitulo()); 
+                System.out.println("Categoria: "+ atual.getInfo().getGenero());
+                System.out.println("Classificação: " + atual.getInfo().getClassificacao());
+                System.out.println("Ano de Lançamento: "+ atual.getInfo().getAno());
+                return atual;
+            }
+            atual = atual.getProx();
+        } while (atual != this.primeiro);
+    
+        System.out.println("Filme não encontrado");
+        return null;
+    }
+    
 }

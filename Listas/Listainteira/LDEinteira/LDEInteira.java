@@ -237,5 +237,171 @@ public class LDEInteira {
         return diferenca;
     }
     
+    public void IOCRA(int valor) {// Crescente ordenado com repetidos antes
+        node novo = new node(valor);
+        if (this.isEmpty()) {// Se for vazio, insere no inicio;
+            this.primeiro = novo;
+            this.ultimo = novo;
+            this.qtd++;
+            System.out.println("Valor inserido");
+
+        } else if (valor <= this.primeiro.getInfo()) {// Insere inicio se o primeiro for maior que o novo
+            this.primeiro.setAnterior(novo);
+            novo.setProx(this.primeiro);
+            this.primeiro = novo;
+            this.qtd++;
+            System.out.println("Valor inserido");
+
+        } else if (valor > this.ultimo.getInfo()) {// Insere no final se o novo for maior que o ultimo
+            this.ultimo.setProx(novo);
+            novo.setAnterior(this.ultimo);
+            this.ultimo = novo;
+            qtd++;
+            System.out.println("Valor inserido");
+
+        } else if (valor == this.ultimo.getInfo()) {
+            this.ultimo.getAnterior().setProx(novo);
+            novo.setAnterior(this.ultimo.getAnterior());
+            this.ultimo.setAnterior(novo);
+            novo.setProx(this.ultimo);
+            qtd++;
+            System.out.println("Valor inserido");
+        } else {
+            node aux = this.primeiro.getProx();
+            while (aux != null) {
+                if (aux.getInfo() >= valor) {
+                    novo.setAnterior(aux.getAnterior());
+                    novo.setProx(aux);
+                    aux.getAnterior().setProx(novo);
+                    aux.setAnterior(novo);
+                    aux = novo;
+                    this.qtd++;
+                    System.out.println("Valor inserido");
+                    return;
+                }
+                aux = aux.getProx();
+            }
+        }
+    }
+
+    public void removerTodasCopias(int valorParaRemover) {
+        node atual = this.primeiro;
+    
+        while (atual != null) {
+            if (atual.getInfo() == valorParaRemover) {
+                node anterior = atual.getAnterior();
+                node proximo = atual.getProx();
+    
+                if (anterior != null) {
+                    anterior.setProx(proximo);
+                } else {
+                    this.primeiro = proximo;
+                }
+    
+                if (proximo != null) {
+                    proximo.setAnterior(anterior);
+                } else {
+                    this.ultimo = anterior;
+                }
+    
+                this.qtd--;
+                atual = proximo; 
+            } else {
+                atual = atual.getProx();
+            }
+        }
+    }
+
+    public void IODS(int valor) {// Decrescente ordenado sem repetidos
+        node novo = new node(valor);
+        if (this.isEmpty()) {// Se for vazio, insere no inicio;
+            this.primeiro = novo;
+            this.ultimo = novo;
+            this.qtd++;
+            System.out.println("Valor inserido");
+
+        } else if (valor > this.primeiro.getInfo()) {
+            this.primeiro.setAnterior(novo);
+            novo.setProx(this.primeiro);
+            this.primeiro = novo;
+            this.qtd++;
+            System.out.println("Valor inserido");
+
+        } else if (valor == this.primeiro.getInfo()) {
+            System.out.println("Valor repetido");
+
+        } else if (valor > this.ultimo.getInfo()) {// Insere no final se o novo for maior que o ultimo
+            this.ultimo.setProx(novo);
+            novo.setAnterior(this.ultimo);
+            this.ultimo = novo;
+            qtd++;
+            System.out.println("Valor inserido");
+
+        } else if (valor == this.ultimo.getInfo()) {
+            System.out.println("Valor não foi inserido");
+        } else {
+            node aux = this.primeiro.getProx();
+            while (aux != null) {
+                if (aux.getInfo() < valor) {
+                    novo.setAnterior(aux.getAnterior());
+                    novo.setProx(aux);
+                    aux.getAnterior().setProx(novo);
+                    aux.setAnterior(novo);
+                    aux = novo;
+                    this.qtd++;
+                    System.out.println("Valor inserido");
+                    return;
+
+                } else if (aux.getInfo() == valor) {
+                    System.out.println("Valor já foi inserido na lista");
+                    return;
+
+                }
+                aux = aux.getProx();
+            }
+        }
+    }
+    public node buscaSequencialMelhorada(int valorProcurado) {
+        node atual = this.primeiro;
+    
+        while (atual != null) {
+            if (atual.getInfo() == valorProcurado) {
+                return atual; // Retorna a referência para o nó encontrado
+            } else if (atual.getInfo() < valorProcurado) {
+                // Como a lista está ordenada em ordem decrescente, se chegarmos a um valor menor, podemos parar a busca
+                return null;
+            }
+            atual = atual.getProx();
+        }
+    
+        return null; // Valor não encontrado na lista
+    }
+    
+    public void remover(int valorParaRemover) {
+        node noParaRemover = buscaSequencialMelhorada(valorParaRemover);
+    
+        if (noParaRemover != null) {
+            node anterior = noParaRemover.getAnterior();
+            node proximo = noParaRemover.getProx();
+    
+            if (anterior != null) {
+                anterior.setProx(proximo);
+            } else {
+                this.primeiro = proximo;
+            }
+    
+            if (proximo != null) {
+                proximo.setAnterior(anterior);
+            } else {
+                this.ultimo = anterior;
+            }
+    
+            this.qtd--;
+            System.out.println("Valor " + valorParaRemover + " removido da lista.");
+        } else {
+            System.out.println("Valor " + valorParaRemover + " não encontrado na lista.");
+        }
+    }
+    
 }
 
