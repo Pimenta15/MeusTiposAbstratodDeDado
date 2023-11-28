@@ -75,9 +75,10 @@ public class ListaCategorias {
         NodePrincipal atual = buscar(o.getGenero());
         atual.getInfo().getLista().remover(o);
         if (atual.getInfo().getLista().isEmpty()) {
-        Categoria remover = new Categoria(o.getGenero());
+    
+            Categoria remover = new Categoria(o.getGenero());
         
-            if (remover.compareTo(atual.getInfo()) == 0) {
+            if ( remover.compareTo(atual.getInfo()) == 0) {
                 if (this.qtd == 1) { 
                     this.primeiro = null;
                     this.ultimo = null;
@@ -99,8 +100,6 @@ public class ListaCategorias {
             }
     
             atual = atual.getProx();
-    
-        System.out.println("Categoria não encontrada ");
         }
     }
 
@@ -114,7 +113,7 @@ public class ListaCategorias {
         NodePrincipal atual = this.primeiro;
     
         do {
-            if (categoriaBuscar.compareTo(atual.getInfo()) == 0) {
+            if (atual != null && categoriaBuscar.compareTo(atual.getInfo()) == 0) {
                
                 return atual;
             }
@@ -134,6 +133,7 @@ public class ListaCategorias {
     
         NodePrincipal atual = this.primeiro;
         for (int i = 0; i < qtd; i++) {
+            System.out.println("");
             System.out.println("Categoria: " + atual.getInfo());
             atual.getInfo().getLista().exibir();
             atual = atual.getProx();
