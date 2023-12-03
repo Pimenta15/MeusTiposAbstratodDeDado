@@ -115,7 +115,6 @@ public class App {
             consultar = null;
         }
         if (consultar != null) {
-            System.out.println(consultar);
             System.out.println("Filme encontrado:");
             System.out.println("Titulo: " + consultar.getTitulo());
             System.out.println("Categoria: " + consultar.getGenero());

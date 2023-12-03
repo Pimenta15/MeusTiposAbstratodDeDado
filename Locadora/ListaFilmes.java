@@ -116,11 +116,7 @@ public class ListaFilmes {
         NodeSecundario atual = this.primeiro;
         do {
             if (filme.compareTo(atual.getInfo()) == 0) {
-                System.out.println("Filme encontrado:");
-                System.out.println("Titulo: " + atual.getInfo().getTitulo()); 
-                System.out.println("Categoria: "+ atual.getInfo().getGenero());
-                System.out.println("Classificação: " + atual.getInfo().getClassificacao());
-                System.out.println("Ano de Lançamento: "+ atual.getInfo().getAno());
+               
                 return atual;
             }
             atual = atual.getProx();
