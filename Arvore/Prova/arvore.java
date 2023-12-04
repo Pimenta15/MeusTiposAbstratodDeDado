@@ -1,5 +1,9 @@
 package Arvore.Prova;
 
+import java.util.Stack;
+
+import Arvore.EstruturaAuxiliar.Queue;
+
 public class arvore<T extends Comparable<T>> {
     
     private no<T> root;
@@ -127,12 +131,96 @@ public class arvore<T extends Comparable<T>> {
         return r;
     }
      
-    public void emOrdemRecursivo(){}
+    public void PasseioRecursivo(){
+        if (root == null) {
+            System.out.println("Arvore Vazia");
+        }else{  //ESCOLHER UM!!!!
+            this.emOrdem(root);
+            this.preOrdem(root);
+            this.posOrdem(root);
+        }
+
+    }
+
+    private void emOrdem(no<T> r){
+        if (r !=null)  {
+            emOrdem(r.getLeft());
+            System.out.println(r.getData());
+            emOrdem(r.getRight());
+        }
+    }
+
+    private void preOrdem(no<T> r){
+        if (r !=null)  {
+            System.out.println(r.getData());
+            preOrdem(r.getLeft());
+            preOrdem(r.getRight());
+        }
+    }
+
+    private void posOrdem(no<T> r){
+        if (r !=null)  {
+            posOrdem(r.getLeft());
+            posOrdem(r.getRight());
+            System.out.println(r.getData());
+        }
+    }
     
-    public void emOrdemRepetido(){}
+    public void emOrdemRepetido(){
+       Stack<no<T>> stack = new Stack<>();
+        no<T> aux = root;
+        if (root == null) {
+            System.out.println("Arvore Vazia");
+        }else {
+            while (stack.empty()== false || aux != null) {
+                while (aux != null) {
+                    stack.push(aux);
+                    aux = aux.getLeft();
+                    
+                }
+                aux = stack.pop();
+                System.out.println(aux.getData());
+                aux = aux.getRight();
+            }
+        }
+    }
+    
+    public void porNivel(){
+        Queue<no<T>> fila =  new Queue<>();
+        no<T> aux = root;
 
-    public void preOrdemRecursivo(){}
-
-    public void preOrdemRepetido(){}
-
+        if (root == null) {
+            System.out.println("Arvore Vazia");
+        }else{
+            fila.enqueue(aux);
+            while (!fila.empty()) {
+                aux = fila.dequeue();
+                if (aux.getLeft() != null) {
+                    fila.enqueue(aux.getLeft());
+                }
+                if (aux.getRight() != null) {
+                    fila.enqueue(aux.getRight());
+                }
+                System.out.println(aux.getData());
+            }
+        }
+    }
+    
+    public void preOrdemRepetido(){
+        Stack<no<T>> stack = new Stack<>();
+        no<T> aux = root;
+        if (root == null) {
+            System.out.println("Arvore Vazia");
+        }else {
+            while (stack.empty()== false || aux != null) {
+                while (aux != null) {
+                    System.out.println(aux.getData());
+                    stack.push(aux);
+                    aux = aux.getLeft();
+                }
+                aux = stack.pop();
+                aux = aux.getRight();
+            }
+        }
+    }
 }
