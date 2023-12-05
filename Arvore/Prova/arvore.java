@@ -32,14 +32,14 @@ public class arvore<T extends Comparable<T>> {
         }else{
             no<T> aux = this.root;
             while (aux != null) {
-                if (aux.getData().compareTo(valor) == 1) {
+                if (aux.getData().compareTo(valor) > 0 ) {
                     if (aux.getLeft() == null) {
                         aux.setLeft(new no<T>(valor));
                         return;
                     }else {
                         aux = aux.getLeft();
                     }
-                } else if(aux.getData().compareTo(valor) == -1) {
+                } else if(aux.getData().compareTo(valor) < 0) {
                     if (aux.getRight() == null) {
                         aux.setRight(new no<T>(valor));
                         return;
